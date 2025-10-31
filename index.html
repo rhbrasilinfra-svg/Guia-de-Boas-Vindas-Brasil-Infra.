@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Boas-Vindas - Brasil Infra</title>
+    <style>
+        /* Reset e Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy-primary: #003654;
+            --navy-dark: #1B3A5F;
+            --yellow-primary: #EFC530;
+            --gray-medium: #999999;
+            --gray-light: #E5E5E5;
+            --white: #FFFFFF;
+            --text-dark: #333333;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            overflow-x: hidden;
+        }
+
+        /* Barra Lateral Amarela */
+        .yellow-bar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 100vh;
+            background: var(--yellow-primary);
+            z-index: 999;
+        }
+
+        /* Barra de Progresso */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 60px;
+            right: 0;
+            height: 4px;
+            background: var(--gray-light);
+            z-index: 1000;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--navy-primary), var(--yellow-primary));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--navy-dark), var(--navy-primary));
+            padding: 3rem 2rem;
+            margin-left: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: 'INFRAESTRUTURA';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-5deg);
+            font-size: 8rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        /* Container Principal */
+        .container {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+            margin-left: 60px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.08);
+            padding: 2rem 0;
+        }
+
+        .sidebar h3 {
+            padding: 0 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--navy-primary);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .menu-item {
+            padding: 1rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            background: linear-gradient(90deg, rgba(239, 197, 48, 0.1), transparent);
+            border-left-color: var(--yellow-primary);
+            padding-left: 2rem;
+        }
+
+        .menu-item.active {
+            background: rgba(0, 54, 84, 0.08);
+            border-left-color: var(--navy-primary);
+            color: var(--navy-primary);
+            font-weight: 700;
+        }
+
+        /* Área de Conteúdo */
+        .content {
+            flex: 1;
+            padding: 3rem;
+            max-width: 1200px;
+        }
+
+        /* Seções */
+        .section {
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Header */
+        .section-header {
+            background: linear-gradient(135deg, var(--navy-primary), var(--navy-dark));
+            padding: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-header::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: var(--yellow-primary);
+            opacity: 0.1;
+            border-radius: 50%;
+            top: -50px;
+            right: -50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--yellow-primary);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--navy-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .card h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--navy-primary);
+            margin: 1.5rem 0 1rem;
+        }
+
+        .card p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .card ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        /* Highlight Box */
+        .highlight {
+            background: linear-gradient(135deg, var(--yellow-primary), #F5D956);
+            padding: 2rem;
+            border-left: 8px solid var(--navy-primary);
+            margin: 2rem 0;
+            box-shadow: 0 5px 25px rgba(239, 197, 48, 0.3);
+        }
+
+        .highlight h4 {
+            color: var(--navy-primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .highlight p {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight strong {
+            font-size: 1.3rem;
+            display: block;
+            margin: 1rem 0;
+        }
+
+        /* Value/Principle Items */
+        .value-item, .principle-item {
+            background: linear-gradient(135deg, #F8F9FA, var(--white));
+            padding: 2rem;
+            border-left: 5px solid var(--navy-primary);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .value-item:hover, .principle-item:hover {
+            border-left-width: 8px;
+            transform: translateX(3px);
+        }
+
+        .value-item h4, .principle-item h4 {
+            color: var(--navy-primary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Cards */
+        .contact-card {
+            background: linear-gradient(135deg, var(--white), #F8F9FA);
+            padding: 2rem;
+            border-left: 5px solid var(--navy-primary);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-card h4 {
+            color: var(--navy-primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            margin-top: 1rem;
+        }
+
+        .contact-info p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+        }
+
+        .contact-info strong {
+            color: var(--navy-primary);
+            font-weight: 600;
+        }
+
+        /* Accordion */
+        .accordion-item {
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion-header {
+            background: var(--navy-primary);
+            color: var(--white);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+            font-weight: 600;
+        }
+
+        .accordion-header:hover {
+            background: var(--navy-dark);
+        }
+
+        .accordion-icon {
+            color: var(--yellow-primary);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            background: var(--white);
+            border-left: 4px solid var(--yellow-primary);
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-content.active {
+            max-height: 500px;
+            padding: 1.5rem;
+        }
+
+        /* Checklist */
+        .checklist-group {
+            margin-bottom: 3rem;
+        }
+
+        .checklist-group h4 {
+            color: var(--navy-primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--yellow-primary);
+        }
+
+        .checklist-item {
+            background: var(--white);
+            padding: 1.25rem;
+            margin-bottom: 0.75rem;
+            border-left: 3px solid var(--gray-light);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .checklist-item:hover {
+            border-left-color: var(--yellow-primary);
+            background: #F8F9FA;
+            transform: translateX(5px);
+        }
+
+        .checklist-item.completed {
+            opacity: 0.5;
+            border-left-color: var(--navy-primary);
+        }
+
+        .checklist-item.completed span {
+            text-decoration: line-through;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: var(--navy-primary);
+            flex-shrink: 0;
+        }
+
+        .checklist-item span {
+            flex: 1;
+            font-size: 1rem;
+            line-height: 1.5;
+            cursor: pointer;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-block;
+            background: var(--navy-primary);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: 2px solid var(--navy-primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+
+        .btn:hover {
+            background: var(--yellow-primary);
+            color: var(--navy-dark);
+            border-color: var(--yellow-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(239, 197, 48, 0.4);
+        }
+
+        /* Organograma */
+        .org-image-container {
+            background: #F8F9FA;
+            padding: 2rem;
+            border: 3px solid var(--yellow-primary);
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .org-image-container img {
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .org-image-note {
+            background: var(--yellow-primary);
+            padding: 1rem;
+            border-left: 5px solid var(--navy-primary);
+            margin: 1rem 0;
+            font-weight: 600;
+        }
+
+        .org-image-note code {
+            display: block;
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            font-family: monospace;
+        }
+
+        .org-level {
+            margin-bottom: 2rem;
+        }
+
+        .org-level h5 {
+            color: var(--navy-dark);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .org-item {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--yellow-primary);
+        }
+
+        .org-item strong {
+            color: var(--navy-primary);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Social Links */
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: block;
+            color: var(--navy-primary);
+            text-decoration: none;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--yellow-primary);
+        }
+
+        .social-links a::before {
+            content: '🔗 ';
+            margin-right: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .yellow-bar {
+                width: 40px;
+            }
+
+            .header, .container {
+                margin-left: 40px;
+            }
+
+            .sidebar {
+                width: 250px;
+            }
+
+            .content {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .yellow-bar {
+                width: 100%;
+                height: 40px;
+                top: 0;
+            }
+
+            .progress-bar {
+                top: 40px;
+                left: 0;
+            }
+
+            .header {
+                margin-left: 0;
+                margin-top: 44px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                flex-direction: column;
+                margin-left: 0;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 1rem;
+            }
+
+            .content {
+                padding: 1.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Impressão */
+        @media print {
+            .yellow-bar,
+            .progress-bar,
+            .sidebar {
+                display: none;
+            }
+
+            .container {
+                margin-left: 0;
+            }
+
+            .section {
+                display: block !important;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra Lateral Amarela -->
+    <div class="yellow-bar"></div>
+
+    <!-- Barra de Progresso -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>Guia de Boas-Vindas<br>Brasil Infra</h1>
+        <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.9); margin-top: 1rem; font-weight: 500; text-align: center;">Construindo Progresso com Você</p>
+    </header>
+
+    <!-- Container Principal -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Navegação</h3>
+            <a class="menu-item active" onclick="showSection(0)">Boas-vindas</a>
+            <a class="menu-item" onclick="showSection(1)">Quem Somos</a>
+            <a class="menu-item" onclick="showSection(2)">Nossos Valores</a>
+            <a class="menu-item" onclick="showSection(3)">Perfil Brasil Infra</a>
+            <a class="menu-item" onclick="showSection(4)">Programa Padrinho/Madrinha</a>
+            <a class="menu-item" onclick="showSection(5)">Período de Experiência</a>
+            <a class="menu-item" onclick="showSection(6)">Organização</a>
+            <a class="menu-item" onclick="showSection(7)">Ética e Conduta</a>
+            <a class="menu-item" onclick="showSection(8)">Segurança</a>
+            <a class="menu-item" onclick="showSection(9)">Dia a Dia</a>
+            <a class="menu-item" onclick="showSection(10)">LGPD e Privacidade</a>
+            <a class="menu-item" onclick="showSection(11)">Desenvolvimento e Carreira</a>
+            <a class="menu-item" onclick="showSection(12)">Perguntas Frequentes</a>
+            <a class="menu-item" onclick="showSection(13)">Contatos Importantes</a>
+            <a class="menu-item" onclick="showSection(14)">Suas Ideias Importam</a>
+            <a class="menu-item" onclick="showSection(15)">Checklist de Integração</a>
+        </aside>
+
+        <!-- Conteúdo -->
+        <main class="content">
+            <!-- SEÇÃO 1: BOAS-VINDAS -->
+            <section class="section active" id="section-0">
+                <div class="section-header">
+                    <h2>Bem-vindo à Brasil Infra!</h2>
+                    <p>Estamos felizes por você fazer parte da nossa história</p>
+                </div>
+
+                <div class="card">
+                    <p>Começar em uma nova empresa é sempre um momento especial, e estamos felizes por você ter escolhido fazer parte da nossa história.</p>
+                    <p>Este Guia de Boas-Vindas foi criado para que você conheça melhor a Brasil Infra: nossa cultura, nossos valores, nossas expectativas e, principalmente, como você pode fazer a diferença por aqui.</p>
+                    <p>Nas próximas páginas, você encontrará informações importantes sobre a empresa, conhecerá a estrutura organizacional, entenderá nossos processos e descobrirá as oportunidades de crescimento que temos a oferecer.</p>
+                </div>
+
+                <div class="highlight">
+                    <h4>Nossa Missão</h4>
+                    <strong>Construir Progresso</strong>
+                    <p>Este não é apenas um nome bonito. É o propósito que guia cada decisão, cada projeto, cada dia de trabalho na Brasil Infra.</p>
+                </div>
+
+                <div class="card">
+                    <p>Nossa empresa nasceu para fazer diferença na infraestrutura do Brasil. Executamos projetos que transformam cidades, conectam pessoas e constroem o futuro do nosso país.</p>
+                    <p style="color: var(--navy-primary); font-weight: 600; font-size: 1.1rem;">Construir progresso vai muito além de executar grandes obras. É sobre fazer o certo, da forma certa, em todas as nossas relações com clientes, fornecedores, colegas de trabalho e com a sociedade.</p>
+                    <p>Aqui, você não é apenas mais um colaborador. Você é parte fundamental de uma missão maior. Seja bem-vindo(a) à equipe!</p>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 2: QUEM SOMOS -->
+            <section class="section" id="section-1">
+                <div class="section-header">
+                    <h2>Quem Somos</h2>
+                </div>
+
+                <div class="card">
+                    <h3>Nossa Empresa</h3>
+                    <p>Somos uma construtora especializada em obras pesadas e complexas, com foco em infraestrutura de grande porte. Nossa atuação abrange:</p>
+                    <ul>
+                        <li><strong>Saneamento</strong> - Sistemas de água e esgoto</li>
+                        <li><strong>Pavimentação</strong> - Rodovias e vias urbanas</li>
+                        <li><strong>Redes Enterradas</strong> - Infraestrutura subterrânea</li>
+                        <li><strong>Obras de Arte Especial</strong> - Pontes e viadutos</li>
+                        <li><strong>Estruturas de Concreto Armado</strong></li>
+                        <li><strong>Urbanização</strong> - Projetos urbanos completos</li>
+                        <li><strong>Estruturas Metálicas</strong></li>
+                        <li><strong>Tubulações</strong> - Sistemas de grande porte</li>
+                    </ul>
+                    <p><em>Atendemos tanto clientes privados quanto o setor público, sempre com o compromisso de entregar qualidade, segurança e inovação.</em></p>
+                </div>
+
+                <div class="card">
+                    <h3>Missão</h3>
+                    <p style="font-size: 1.4rem; font-weight: 700; color: var(--navy-primary);">Construir Progresso</p>
+                </div>
+
+                <div class="card">
+                    <h3>Visão</h3>
+                    <p style="font-size: 1.4rem; font-weight: 700; color: var(--navy-primary);">Executar os maiores projetos de infraestrutura do país</p>
+                </div>
+
+                <div class="card">
+                    <p><em>"A satisfação dos nossos clientes é a melhor propaganda que podemos ter. Por isso, buscamos sempre a excelência na execução de cada projeto, transformando desafios em soluções."</em></p>
+                    <p style="font-weight: 700; margin-top: 1rem;">Juventude e maturidade se entrelaçam em nossa essência.</p>
+                    <p>A satisfação dos nossos clientes é a melhor propaganda que podemos ter. Por isso, buscamos sempre a excelência na execução de cada projeto, transformando desafios em soluções.</p>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 3: NOSSOS VALORES -->
+            <section class="section" id="section-2">
+                <div class="section-header">
+                    <h2>Nossos Valores</h2>
+                    <p>Estes cinco valores guiam tudo que fazemos</p>
+                </div>
+
+                <div class="card">
+                    <p>São mais do que palavras bonitas, são compromissos diários que orientam nossas ações e decisões:</p>
+                </div>
+
+                <div class="value-item">
+                    <h4>Comprometimento</h4>
+                    <p>Somos persistentes e determinados na busca das nossas metas, mesmo diante de desafios.</p>
+                </div>
+
+                <div class="value-item">
+                    <h4>Trabalho Seguro</h4>
+                    <p>Priorizamos a saúde física e mental. Nossos colaboradores são nossos principais ativos.</p>
+                </div>
+
+                <div class="value-item">
+                    <h4>Ambiente Saudável</h4>
+                    <p>Acreditamos que um ambiente leve, de boas energias e respeitoso promove bem-estar, produtividade e equilíbrio entre a vida pessoal e profissional.</p>
+                </div>
+
+                <div class="value-item">
+                    <h4>Foco no Resultado</h4>
+                    <p>Trabalhamos com foco no objetivo, determinação e flexibilidade para ajustar a rota quando necessário.</p>
+                </div>
+
+                <div class="value-item">
+                    <h4>Mentalidade de Crescimento</h4>
+                    <p>Estamos em constante desenvolvimento, aprimoramento e crescimento.</p>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 4: PERFIL BRASIL INFRA -->
+            <section class="section" id="section-3">
+                <div class="section-header">
+                    <h2>O Perfil Brasil Infra</h2>
+                </div>
+
+                <div class="card">
+                    <p style="font-weight: 600; font-size: 1.1rem;">Juventude e maturidade caminham juntas aqui. Temos a energia para inovar e a experiência para realizar.</p>
+                    <p>Buscamos pessoas que se identifiquem com essa essência e que estejam preparadas para os desafios de construir grandes projetos de infraestrutura.</p>
+                </div>
+
+                <div class="card">
+                    <h3>As 3 Características Essenciais</h3>
+
+                    <h4>1. Solucionar Problemas</h4>
+                    <p>Na construção civil, desafios aparecem todos os dias. Queremos pessoas que vejam problemas como oportunidades de encontrar soluções criativas.</p>
+
+                    <h4>2. Produzir Resultados</h4>
+                    <p>Sonhar é importante, mas realizar é o que transforma. Valorizamos quem tira projetos do papel e faz as coisas acontecerem.</p>
+
+                    <h4>3. Estar em Constante Desenvolvimento</h4>
+                    <p>Ninguém nasce pronto. Queremos pessoas que tenham vontade de aprender, de melhorar e de crescer junto com a empresa.</p>
+                </div>
+
+                <div class="highlight">
+                    <p style="text-align: center; font-size: 1.2rem; font-weight: 700;">Se você se identificou com essas características, está no lugar certo.</p>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 5: PROGRAMA PADRINHO/MADRINHA -->
+            <section class="section" id="section-4">
+                <div class="section-header">
+                    <h2>Programa de Padrinho/Madrinha</h2>
+                    <p>Seu apoio nos primeiros 90 dias</p>
+                </div>
+
+                <div class="highlight">
+                    <p style="text-align: center; font-size: 1.3rem; font-weight: 700;">Duração: 90 dias</p>
+                </div>
+
+                <div class="card">
+                    <p>Para facilitar sua integração e adaptação à Brasil Infra, você contará com o apoio de um padrinho ou madrinha durante seus primeiros 90 dias na empresa.</p>
+
+                    <h4>O que seu padrinho/madrinha fará por você:</h4>
+                    <ul>
+                        <li>Ajudar a entender como as coisas funcionam</li>
+                        <li>Tirar dúvidas do dia a dia</li>
+                        <li>Apresentar a equipe e a cultura da empresa</li>
+                        <li>Ser sua referência para questões práticas</li>
+                        <li>Acompanhar sua adaptação e desenvolvimento</li>
+                    </ul>
+
+                    <p style="font-style: italic; margin-top: 1.5rem;">Este programa de acompanhamento existe porque acreditamos que boas integrações constroem carreiras de sucesso.</p>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 6: PERÍODO DE EXPERIÊNCIA -->
+            <section class="section" id="section-5">
+                <div class="section-header">
+                    <h2>Período de Experiência</h2>
+                </div>
+
+                <div class="highlight">
+                    <p style="text-align: center; font-size: 1.3rem; font-weight: 700;">Duração: 60 dias</p>
+                </div>
+
+                <div class="card">
+                    <p>Seu contrato de trabalho inclui um período de experiência de 60 dias. Durante esse período, tanto você quanto a empresa têm a oportunidade de avaliar se a relação de trabalho está funcionando bem para ambos os lados.</p>
+                    <p>Seu líder acompanhará de perto seu desempenho e desenvolvimento, oferecendo orientação e suporte sempre que necessário.</p>
+
+                    <h4>O que esperar:</h4>
+                    <ul>
+                        <li>Reuniões regulares com líder para alinhamento</li>
+                        <li>Feedback constante sobre desempenho</li>
+                        <li>Oportunidade de demonstrar suas habilidades</li>
+                        <li>Avaliação mútua da adequação da função</li>
+                    </ul>
+                </div>
+
+                <div class="highlight">
+                    <h4>Importante:</h4>
+                    <p>O Período de Experiência (60 dias) e o Programa Padrinho/Madrinha (90 dias) são processos diferentes. Mesmo após o fim do período de experiência, você continuará recebendo apoio e acompanhamento na sua jornada de integração.</p>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 7: ORGANIZAÇÃO -->
+            <section class="section" id="section-6">
+                <div class="section-header">
+                    <h2>Como Estamos Organizados</h2>
+                </div>
+
+                <div class="card">
+                    <p>Nossa estrutura é pensada para que cada área funcione bem e todas trabalhem integradas. O CEO lidera a empresa junto com os gerentes de cada área.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Principais Áreas</h3>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Engenharia</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Planeja e executa nossos projetos técnicos, cuida do orçamento, planejamento e qualidade das obras.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Administrativo e Financeiro</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Gerencia as finanças, contabilidade e os processos administrativos que mantêm a empresa funcionando.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Gestão Corporativa</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Cuida da visão estratégica e das operações corporativas.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Recursos Humanos</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Trabalha para que você tenha um ambiente bom para crescer, desenvolver sua carreira e se sentir valorizado.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Suprimentos</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Garante que tenhamos os materiais e equipamentos necessários para as obras acontecerem.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Obras</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>É onde tudo acontece de fato. Nossos times em campo executam os projetos e transformam planos em realidade.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Setor de Segurança do Trabalho</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Responsável por garantir o cumprimento das normas de saúde e segurança, prevenção de acidentes e promoção de um ambiente de trabalho seguro, saudável e conforme a legislação.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Administrativo Obras</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Responsável pelo apoio operacional e documental às áreas administrativas e de obra, controle de correspondências, arquivos e suporte às rotinas financeiras e de pessoal.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 8: ÉTICA E CONDUTA -->
+            <section class="section" id="section-7">
+                <div class="section-header">
+                    <h2>Ética e Conduta</h2>
+                    <p>A Base do Nosso Trabalho</p>
+                </div>
+
+                <div class="card">
+                    <p>Junto com este manual, você está recebendo nosso Código de Ética e Conduta. Esse documento é fundamental e deve ser lido com atenção.</p>
+                </div>
+
+                <div class="highlight">
+                    <p>Na Brasil Infra, acreditamos que construir progresso vai muito além de executar grandes obras. É sobre fazer o certo, da forma certa, em todas as nossas relações.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Princípios que Nos Guiam</h3>
+
+                    <div class="principle-item">
+                        <h4>Integridade</h4>
+                        <p>Agir de forma honesta, ética e transparente em todas as atividades.</p>
+                    </div>
+
+                    <div class="principle-item">
+                        <h4>Respeito</h4>
+                        <p>Valorizar as pessoas, promovendo diversidade, igualdade e dignidade.</p>
+                    </div>
+
+                    <div class="principle-item">
+                        <h4>Responsabilidade</h4>
+                        <p>Cumprir compromissos com consciência social e ambiental.</p>
+                    </div>
+
+                    <div class="principle-item">
+                        <h4>Profissionalismo</h4>
+                        <p>Manter padrão elevado de qualidade, eficiência e segurança.</p>
+                    </div>
+
+                    <div class="principle-item">
+                        <h4>Confidencialidade</h4>
+                        <p>Proteger informações estratégicas de clientes, parceiros e da própria empresa.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Canal de Denúncias</h3>
+                    <p>Se você presenciar ou tomar conhecimento de qualquer conduta que viole nosso Código de Ética, é importante que reporte através dos nossos canais:</p>
+
+                    <div class="contact-info" style="background: #f8f9fa; padding: 1.5rem; margin: 1rem 0;">
+                        <p><strong>E-mail:</strong> <a href="mailto:etica@construtorabrasilinfra.com">etica@construtorabrasilinfra.com</a></p>
+                        <p><strong>Telefone:</strong> 21 99673-8715</p>
+                        <p style="margin-top: 1rem;">
+                            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=gKlKcDmItEKm36UvF5JifcR46DkJkI5Agyz_kilAbqdUOEhHOTY5OVlLQ0hQMjhKMFBBQ1ZQWjVWNSQlQCN0PWcu" target="_blank" class="btn">Formulário de Denúncias</a>
+                        </p>
+                    </div>
+
+                    <h4>Denúncias Anônimas</h4>
+                    <p>Se preferir manter o anonimato, você pode criar um e-mail temporário gratuito em serviços como Gmail ou Hotmail. Exemplos:</p>
+                    <ul>
+                        <li>etica.brainfra@hotmail.com</li>
+                        <li>canal.anonimo@gmail.com</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <p style="text-align: center; font-style: italic; font-size: 1.1rem;">Mais do que executar obras, construímos confiança e solidez em cada relação. Nosso Código de Ética é o alicerce que garante que o progresso seja feito com integridade e responsabilidade.</p>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 9: SEGURANÇA DO TRABALHO -->
+            <section class="section" id="section-8">
+                <div class="section-header">
+                    <h2>Segurança do trabalho</h2>
+                    <p>Nosso Valor Inegociável</p>
+                </div>
+
+                <div class="highlight">
+                    <p style="font-size: 1.2rem; font-weight: 700;">Na Brasil Infra, segurança não é opcional. É prioridade absoluta.</p>
+                    <p style="font-size: 1.1rem; font-weight: 700; margin-top: 1rem;">Acreditamos firmemente que todo acidente pode ser evitado.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Normas e Procedimentos</h3>
+                    <p>Seguimos rigorosamente as Normas Regulamentadoras (NRs) aplicáveis à construção civil.</p>
+                    <p>Você receberá treinamento específico sobre segurança no trabalho e deve participar de todas as capacitações obrigatórias.</p>
+                </div>
+
+                <div class="card">
+                    <h3>EPIs (Equipamentos de Proteção Individual)</h3>
+                    
+                    <div class="highlight">
+                        <p style="font-size: 1.1rem; font-weight: 700;">O uso dos EPIs é obrigatório e não negociável.</p>
+                    </div>
+
+                    <h4>EPIs Essenciais:</h4>
+                    <ul>
+                        <li>Capacete</li>
+                        <li>Botas de segurança</li>
+                        <li>Luvas</li>
+                        <li>Óculos de proteção</li>
+                        <li>Protetor auricular</li>
+                    </ul>
+
+                    <p style="font-size: 1.1rem; font-weight: 700; color: var(--navy-primary); margin-top: 1.5rem;">Sua vida vale muito mais que qualquer atalho.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Procedimentos de Emergência</h3>
+                    <p>Você será treinado em primeiros socorros básicos e procedimentos de emergência.</p>
+                    <p><strong>Importante:</strong> Conheça a localização de:</p>
+                    <ul>
+                        <li>Saídas de emergência</li>
+                        <li>Extintores de incêndio</li>
+                        <li>Pontos de encontro</li>
+                        <li>Kit de primeiros socorros</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Reporte de Riscos</h3>
+                    
+                    <div class="highlight">
+                        <p>Se você identificar qualquer situação que possa comprometer a segurança, reporte imediatamente ao seu líder ou à equipe de segurança do trabalho.</p>
+                        <p style="margin-top: 1rem;">Sua observação pode salvar vidas. Nunca hesite em apontar riscos.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 10: DIA A DIA -->
+            <section class="section" id="section-9">
+                <div class="section-header">
+                    <h2>Dia a Dia</h2>
+                    <p>Informações Úteis</p>
+                </div>
+
+                <div class="card">
+                    <h3>Comunicação Interna</h3>
+                    <p>A comunicação clara e eficiente é fundamental para o bom funcionamento de qualquer equipe.</p>
+                    
+                    <h4>Ferramentas:</h4>
+                    <ul>
+                        <li>E-mail corporativo</li>
+                        <li>Reuniões periódicas</li>
+                        <li>Teams</li>
+                    </ul>
+
+                    <p><strong>Importante:</strong> Respeite a hierarquia de comunicação. Se tiver dúvidas sobre processos ou questões técnicas, converse primeiro com seu líder direto.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Processos Administrativos</h3>
+
+                    <h4>1. Solicitação de Materiais</h4>
+                    <p>Siga o processo estabelecido pela área de Suprimentos. Seu líder explicará o procedimento específico da sua área.</p>
+
+                    <h4>2. Aprovações e Documentos</h4>
+                    <p>Familiarize-se com os fluxos de aprovação no sistema Sienge. Cada departamento tem processos específicos.</p>
+
+                    <h4>3. Folha de Pagamento e Benefícios</h4>
+                    <p>Para dúvidas sobre pagamento, descontos ou benefícios, entre em contato com o RH.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Uso de Recursos e Equipamentos</h3>
+                    <p>Todos os recursos da empresa devem ser utilizados de forma responsável e profissional:</p>
+                    <ul>
+                        <li>Veículos</li>
+                        <li>Máquinas e ferramentas</li>
+                        <li>Computadores</li>
+                        <li>Internet corporativa</li>
+                    </ul>
+
+                    <div class="highlight">
+                        <h4>Softwares</h4>
+                        <p>Use apenas softwares licenciados pela empresa. É proibido o uso de ferramentas não autorizadas ou pirataria.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 11: LGPD E PRIVACIDADE -->
+            <section class="section" id="section-10">
+                <div class="section-header">
+                    <h2>LGPD e Privacidade</h2>
+                    <p>Proteção de Dados Pessoais</p>
+                </div>
+
+                <div class="card">
+                    <p>A Brasil Infra respeita e protege a privacidade de seus colaboradores, clientes e parceiros.</p>
+                    <p>Estamos em conformidade com a Lei Geral de Proteção de Dados (LGPD) e levamos muito a sério a proteção das suas informações.</p>
+
+                    <h4>Dados que coletamos:</h4>
+                    <ul>
+                        <li>Documentos pessoais</li>
+                        <li>Informações bancárias</li>
+                        <li>Dados de contato</li>
+                    </ul>
+
+                    <p><strong>Uso:</strong> Exclusivamente para fins relacionados ao trabalho, como processamento de folha de pagamento, gestão de benefícios e comunicação corporativa.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Uso de Imagem</h3>
+                    <p>A coleta de imagens (fotos e vídeos) é feita mediante consentimento prévio.</p>
+                    <p>Você pode revogar esse consentimento a qualquer momento através do canal de privacidade.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Seus Direitos</h3>
+                    <p>De acordo com a LGPD, você tem direito a:</p>
+                    <ul>
+                        <li>Acessar seus dados pessoais</li>
+                        <li>Solicitar correção de dados</li>
+                        <li>Solicitar exclusão quando aplicável</li>
+                        <li>Revogar consentimento</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Sua Responsabilidade</h3>
+                    <p>Você também é responsável pela proteção de dados de clientes, fornecedores e colegas que tenha acesso.</p>
+                    <p>Use essas informações apenas para fins profissionais autorizados.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Contato</h3>
+                    
+                    <div class="contact-info" style="background: #f8f9fa; padding: 1.5rem;">
+                        <p><strong>E-mail:</strong> <a href="mailto:privacidade@construtorabrasilinfra.com">privacidade@construtorabrasilinfra.com</a></p>
+                        <p><strong>Política de Privacidade:</strong> <a href="https://construtorabrasilinfra.com/politica-de-privacidade/" target="_blank">Clique aqui</a></p>
+                        <p style="margin-top: 1rem;">
+                            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=gKlKcDmItEKm36UvF5JifSYlS6F0HmpMt-XnQMPTDKJUQTZYMjFFSVhBS05NVkFGNU9PNEYxMDhNQy4u" target="_blank" class="btn">Formulário de Contato LGPD</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <p style="text-align: center; font-style: italic; font-size: 1.1rem;">Na Brasil Infra, a segurança da informação e o respeito à privacidade são compromissos permanentes.</p>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 12: DESENVOLVIMENTO E CARREIRA -->
+            <section class="section" id="section-11">
+                <div class="section-header">
+                    <h2>Desenvolvimento e Carreira</h2>
+                </div>
+
+                <div class="card">
+                    <p>Investimos no desenvolvimento das nossas pessoas através de diversas iniciativas:</p>
+                    <ul>
+                        <li>Capacitação contínua</li>
+                        <li>Treinamentos especializados</li>
+                        <li>Programas de acompanhamento</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Oportunidades de Crescimento</h3>
+                    <p>A Brasil Infra incentiva o crescimento interno. Muitos dos nossos líderes começaram em posições operacionais.</p>
+                    <p><strong>Portal de Vagas:</strong> <a href="https://brainfra.vagas.solides.com.br/" target="_blank">https://brainfra.vagas.solides.com.br/</a></p>
+
+                    <div class="highlight">
+                        <p>Converse com seu líder sobre seus objetivos de carreira e fique atento às oportunidades divulgadas pelo RH.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Feedback e Avaliação</h3>
+                    <p>O feedback é uma ferramenta poderosa de desenvolvimento. Mantemos uma cultura de troca construtiva entre líderes e colaboradores.</p>
+
+                    <h4>Ciclos de avaliação:</h4>
+                    <ul>
+                        <li>Reconhecer conquistas</li>
+                        <li>Identificar oportunidades de melhoria</li>
+                        <li>Alinhar expectativas</li>
+                    </ul>
+
+                    <div class="highlight">
+                        <h4>Dica</h4>
+                        <p>Não espere apenas pela avaliação formal. Se tiver dúvidas ou quiser entender como está seu desempenho, peça feedback ao seu líder. Essa atitude proativa mostra maturidade profissional.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 13: FAQ -->
+            <section class="section" id="section-12">
+                <div class="section-header">
+                    <h2>Perguntas Frequentes</h2>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Como funciona o período de experiência?</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>O período de experiência dura 60 dias, com acompanhamento próximo do seu líder e do seu padrinho/madrinha. Durante esse tempo, você terá reuniões regulares e receberá feedback constante sobre seu desempenho.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Quais são os benefícios oferecidos?</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Os benefícios variam conforme o cargo e serão detalhados pelo RH durante sua integração. Entre em contato com o RH para informações específicas sobre seu pacote de benefícios.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Como solicito férias?</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Solicite com antecedência ao seu líder direto, que alinhará com o RH. O processo completo e os prazos serão explicados pelo seu líder.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>O que fazer se tiver um problema pessoal que afete meu trabalho?</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Converse com seu líder direto ou com o RH. Estamos aqui para apoiar você e encontrar soluções que funcionem para ambos os lados. Caso não se sinta à vontade para falar diretamente, utilize nossos canais de denúncia do Código de Ética - eles garantem sigilo e respeito em todo o processo.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Posso sugerir melhorias nos processos?</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Sim! Suas ideias são muito importantes para nós. Use o canal de sugestões através do formulário online. Você também pode conversar diretamente com seu líder. Veja mais detalhes na Seção "Suas Ideias Importam".</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Como funciona a jornada de trabalho?</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>A jornada varia conforme área e função. O RH explicará seus horários, intervalos e regime de trabalho durante a integração.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Posso ter atividades profissionais externas?</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Qualquer atividade remunerada externa deve ser previamente autorizada, conforme estabelecido no nosso Código de Ética e Conduta.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 14: CONTATOS IMPORTANTES -->
+            <section class="section" id="section-13">
+                <div class="section-header">
+                    <h2>Contatos Importantes</h2>
+                </div>
+
+                <div class="contact-card">
+                    <h4>Recursos Humanos</h4>
+                    <div class="contact-info">
+                        <p><strong>Gerente:</strong> Suly Farinazzo</p>
+                        <p><strong>Para:</strong> Benefícios, carreira, dúvidas trabalhistas, suporte geral</p>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <h4>Tecnologia da Informação</h4>
+                    <div class="contact-info">
+                        <p><strong>Gerente:</strong> Daniel Borges</p>
+                        <p><strong>Para:</strong> Suporte técnico com equipamentos, sistemas e acessos</p>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <h4>Segurança do Trabalho</h4>
+                    <div class="contact-info">
+                        <p><strong>Eng. Segurança:</strong> Carolina Agra</p>
+                        <p><strong>Para:</strong> Segurança, EPIs, procedimentos de emergência</p>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <h4>Comitê de Ética</h4>
+                    <div class="contact-info">
+                        <p><strong>E-mail:</strong> <a href="mailto:etica@construtorabrasilinfra.com">etica@construtorabrasilinfra.com</a></p>
+                        <p><strong>Telefone:</strong> 21 99673-8715</p>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <h4>Privacidade (LGPD)</h4>
+                    <div class="contact-info">
+                        <p><strong>E-mail:</strong> <a href="mailto:privacidade@construtorabrasilinfra.com">privacidade@construtorabrasilinfra.com</a></p>
+                        <p><strong>Para:</strong> Questões sobre proteção de dados pessoais</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Informações da Empresa</h3>
+                    <div class="contact-info">
+                        <p><strong>Telefone:</strong> +55 (21) 3809-2001</p>
+                        <p><strong>Website:</strong> <a href="https://www.construtorabrasilinfra.com" target="_blank">www.construtorabrasilinfra.com</a></p>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/brasil.infra/" target="_blank">📱 Instagram: @brasil.infra</a>
+                        <a href="https://www.facebook.com/BrasilInfraestrutura" target="_blank">📘 Facebook: Brasil Infraestrutura</a>
+                        <a href="https://br.linkedin.com/company/brasil-infra" target="_blank">💼 LinkedIn: Brasil Infra</a>
+                        <a href="https://www.youtube.com/@Brasil_Infra" target="_blank">🎥 YouTube: @Brasil_Infra</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 14: SUAS IDEIAS IMPORTAM -->
+            <section class="section" id="section-14">
+                <div class="section-header">
+                    <h2>Suas Ideias Importam</h2>
+                    <p>Canal de Sugestões</p>
+                </div>
+
+                <div class="highlight">
+                    <p style="font-size: 1.1rem; font-weight: 700;">Na Brasil Infra, acreditamos que as melhores ideias podem vir de qualquer lugar - e de qualquer pessoa.</p>
+                    <p style="margin-top: 1rem;">Você está na linha de frente do nosso trabalho. Isso significa que você enxerga oportunidades de melhoria que talvez ninguém mais consiga ver da mesma forma.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Por Que Suas Sugestões São Importantes</h3>
+
+                    <div class="principle-item">
+                        <h4>Mentalidade de Crescimento em Ação</h4>
+                        <p>Lembra do nosso valor "Mentalidade de Crescimento"? Ele não é só sobre desenvolvimento pessoal. É sobre evoluir como empresa, juntos.</p>
+                        <p>Cada sugestão é uma oportunidade de aprendermos e nos tornarmos melhores.</p>
+                    </div>
+
+                    <div class="principle-item">
+                        <h4>Construir Progresso é Responsabilidade de Todos</h4>
+                        <p>Nossa missão é "Construir Progresso", e isso não acontece apenas nas obras.</p>
+                        <p>Progresso também significa melhorar nossos processos, nossa comunicação, nossa forma de trabalhar.</p>
+                        <p>Você faz parte dessa construção diária.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Sobre o Que Você Pode Sugerir</h3>
+                    <ul>
+                        <li>Melhorias em processos e procedimentos</li>
+                        <li>Ideias para aumentar a segurança</li>
+                        <li>Formas de otimizar o trabalho da sua área</li>
+                        <li>Sugestões sobre comunicação interna</li>
+                        <li>Ideias para reduzir custos ou desperdícios</li>
+                        <li>Propostas para melhorar o ambiente de trabalho</li>
+                        <li>Qualquer outra ideia que possa beneficiar a empresa</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Como Enviar Sua Sugestão</h3>
+                    
+                    <div class="contact-info" style="background: #f8f9fa; padding: 1.5rem;">
+                        <p style="margin-top: 1rem;">
+                            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=gKlKcDmItEKm36UvF5JifSYlS6F0HmpMt-XnQMPTDKJUMEUwVzdUVUgwWjJHOTZLUDhNUzk1UFZJQi4u" target="_blank" class="btn">Formulário de Sugestões</a>
+                        </p>
+                        <p style="margin-top: 1rem;"><strong>Conversa Direta:</strong> Pode conversar com seu líder ou RH</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>O Que Acontece Com Sua Sugestão</h3>
+                    <ul>
+                        <li>Todas as sugestões são lidas e analisadas com cuidado</li>
+                        <li>Você receberá retorno sobre sua ideia</li>
+                        <li>Sugestões viáveis serão implementadas</li>
+                        <li>Reconhecemos e valorizamos quem contribui ativamente</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Importante Lembrar</h3>
+                    
+                    <div class="highlight">
+                        <ul>
+                            <li>Não existe sugestão "pequena demais" ou "boba demais"</li>
+                            <li>Mesmo que sua ideia não seja implementada exatamente como proposta, ela pode inspirar outras melhorias</li>
+                            <li>O importante é participar e se sentir parte da construção do futuro da empresa</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Compromisso com Resultado</h3>
+                    <p>Valorizamos quem tem Foco no Resultado e age com Comprometimento. Quando você sugere melhorias, está demonstrando esses valores na prática, mostrando que se importa com o sucesso da empresa.</p>
+
+                    <h4>Ambiente Saudável</h4>
+                    <p>Um Ambiente Saudável é aquele onde todos se sentem à vontade para expressar suas ideias sem medo. Aqui, sua voz é ouvida e respeitada.</p>
+                </div>
+
+                <div class="highlight">
+                    <p style="font-size: 1.1rem; font-weight: 700; text-align: center;">Lembre-se: você não foi contratado apenas para executar tarefas. Você foi escolhido para fazer parte de um time que constrói progresso todos os dias. E isso inclui contribuir com suas ideias, sua criatividade e sua visão única sobre o trabalho.</p>
+                </div>
+
+                <div class="card">
+                    <p style="font-size: 1.1rem; font-weight: 700; color: var(--navy-primary); text-align: center;">Suas sugestões não são apenas bem-vindas - elas são essenciais para que continuemos crescendo juntos.</p>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 15: CHECKLIST DE INTEGRAÇÃO -->
+            <section class="section" id="section-15">
+                <div class="section-header">
+                    <h2>Checklist de Integração</h2>
+                    <p>Acompanhe seu progresso nos primeiros meses</p>
+                </div>
+
+                <div class="checklist-group">
+                    <h4>Primeira Semana</h4>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="0">
+                        <span onclick="toggleCheckBySpan(this)">Conheci meu padrinho ou madrinha</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="1">
+                        <span onclick="toggleCheckBySpan(this)">Recebi meus equipamentos (computador, celular, EPIs, etc.)</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="2">
+                        <span onclick="toggleCheckBySpan(this)">Configurei meu e-mail corporativo</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="3">
+                        <span onclick="toggleCheckBySpan(this)">Li o Código de Ética e Conduta completo</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="4">
+                        <span onclick="toggleCheckBySpan(this)">Assinei o Termo de Compromisso do Código de Ética</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="5">
+                        <span onclick="toggleCheckBySpan(this)">Participei do treinamento de segurança</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="6">
+                        <span onclick="toggleCheckBySpan(this)">Conheci minha equipe e meu líder direto</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="7">
+                        <span onclick="toggleCheckBySpan(this)">Fiz tour pelas instalações</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="8">
+                        <span onclick="toggleCheckBySpan(this)">Salvei os contatos de emergência no celular</span>
+                    </div>
+                </div>
+
+                <div class="checklist-group">
+                    <h4>Primeiro Mês</h4>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="9">
+                        <span onclick="toggleCheckBySpan(this)">Entendi os processos principais da minha área</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="10">
+                        <span onclick="toggleCheckBySpan(this)">Participei da primeira reunião de equipe</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="11">
+                        <span onclick="toggleCheckBySpan(this)">Recebi e li a Política de Privacidade (LGPD)</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="12">
+                        <span onclick="toggleCheckBySpan(this)">Conheço o fluxo de comunicação interna</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="13">
+                        <span onclick="toggleCheckBySpan(this)">Sei como solicitar materiais e fazer reembolsos</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="14">
+                        <span onclick="toggleCheckBySpan(this)">Tirei todas as dúvidas sobre benefícios com o RH</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="15">
+                        <span onclick="toggleCheckBySpan(this)">Configurei acesso a todos os sistemas necessários</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="16">
+                        <span onclick="toggleCheckBySpan(this)">Recebi feedback do meu líder sobre as primeiras semanas</span>
+                    </div>
+                </div>
+
+                <div class="checklist-group">
+                    <h4>Primeiros 60 Dias - Período de Experiência</h4>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="17">
+                        <span onclick="toggleCheckBySpan(this)">Realizei minha avaliação e autoavaliação do fim da experiência</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="18">
+                        <span onclick="toggleCheckBySpan(this)">Contribuí com pelo menos uma melhoria ou sugestão</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="19">
+                        <span onclick="toggleCheckBySpan(this)">Conheço todas as áreas da empresa</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="20">
+                        <span onclick="toggleCheckBySpan(this)">Entendo como meu trabalho impacta os resultados</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="21">
+                        <span onclick="toggleCheckBySpan(this)">Já me sinto parte da equipe</span>
+                    </div>
+                </div>
+
+                <div class="checklist-group">
+                    <h4>Primeiros 90 Dias - Programa Padrinho/Madrinha</h4>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="22">
+                        <span onclick="toggleCheckBySpan(this)">Completei o programa de Padrinho/Madrinha</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="23">
+                        <span onclick="toggleCheckBySpan(this)">Recebi avaliação de desempenho do período de experiência</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="24">
+                        <span onclick="toggleCheckBySpan(this)">Conversei com meu líder sobre plano de desenvolvimento</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="25">
+                        <span onclick="toggleCheckBySpan(this)">Me sinto confiante para trabalhar de forma autônoma</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" data-index="26">
+                        <span onclick="toggleCheckBySpan(this)">Conheço as oportunidades de crescimento na empresa</span>
+                    </div>
+                </div>
+
+                <div class="highlight">
+                    <p>Ao completar todos os itens deste checklist, você terá passado por uma integração completa e estará pronto para contribuir plenamente com a Brasil Infra. Lembre-se: seu padrinho/madrinha, líder e RH estão sempre disponíveis para apoiar você!</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Configurações
+        const totalSections = 16;
+        let currentSection = 0;
+
+        // Navegação entre seções
+        function showSection(index) {
+            // Remover classe active de todas as seções
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(s => s.classList.remove('active'));
+
+            // Remover classe active de todos os menu items
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(m => m.classList.remove('active'));
+
+            // Adicionar classe active à seção selecionada
+            sections[index].classList.add('active');
+            menuItems[index].classList.add('active');
+
+            // Atualizar seção atual
+            currentSection = index;
+
+            // Atualizar barra de progresso
+            updateProgress();
+
+            // Scroll para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Atualizar barra de progresso
+        function updateProgress() {
+            const progress = ((currentSection + 1) / totalSections) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        // Navegação por teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+                e.preventDefault();
+                if (currentSection < totalSections - 1) {
+                    showSection(currentSection + 1);
+                }
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                if (currentSection > 0) {
+                    showSection(currentSection - 1);
+                }
+            }
+        });
+
+        // Accordion
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const content = header.nextElementSibling;
+            
+            // Fechar todos os outros accordions
+            const allItems = document.querySelectorAll('.accordion-item');
+            allItems.forEach(i => {
+                if (i !== item) {
+                    i.classList.remove('active');
+                    i.querySelector('.accordion-content').classList.remove('active');
+                }
+            });
+
+            // Toggle do accordion clicado
+            item.classList.toggle('active');
+            content.classList.toggle('active');
+        }
+
+        // Checklist
+        function toggleCheck(item) {
+            // Prevenir propagação de eventos
+            if (window.event) {
+                window.event.stopPropagation();
+            }
+            
+            const checkbox = item.querySelector('input[type="checkbox"]');
+            
+            if (checkbox) {
+                checkbox.checked = !checkbox.checked;
+                
+                if (checkbox.checked) {
+                    item.classList.add('completed');
+                } else {
+                    item.classList.remove('completed');
+                }
+
+                saveChecklistState();
+            }
+        }
+
+        // Toggle checklist ao clicar no texto
+        function toggleCheckBySpan(span) {
+            const item = span.closest('.checklist-item');
+            const checkbox = item.querySelector('input[type="checkbox"]');
+            
+            if (checkbox) {
+                checkbox.checked = !checkbox.checked;
+                
+                if (checkbox.checked) {
+                    item.classList.add('completed');
+                } else {
+                    item.classList.remove('completed');
+                }
+
+                saveChecklistState();
+            }
+        }
+
+        // Salvar estado do checklist no localStorage
+        function saveChecklistState() {
+            const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+            const state = Array.from(checkboxes).map(cb => cb.checked);
+            localStorage.setItem('brasilinfra-checklist', JSON.stringify(state));
+        }
+
+        // Carregar estado do checklist
+        function loadChecklistState() {
+            const savedState = localStorage.getItem('brasilinfra-checklist');
+            if (savedState) {
+                const state = JSON.parse(savedState);
+                const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+                checkboxes.forEach((cb, index) => {
+                    if (state[index]) {
+                        cb.checked = true;
+                        cb.parentElement.classList.add('completed');
+                    }
+                });
+            }
+        }
+
+        // Inicialização
+        window.onload = function() {
+            updateProgress();
+            loadChecklistState();
+            
+            // Adicionar listeners aos checkboxes para funcionarem ao clicar diretamente
+            const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function(e) {
+                    e.stopPropagation();
+                    const item = this.closest('.checklist-item');
+                    if (this.checked) {
+                        item.classList.add('completed');
+                    } else {
+                        item.classList.remove('completed');
+                    }
+                    saveChecklistState();
+                });
+            });
+        };
+    </script>
+</body>
+</html>
